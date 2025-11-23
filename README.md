@@ -73,6 +73,7 @@ user-admin/
 │   └── api/          # API routes (GET/POST endpoints)
 ├── components/       # React components
 ├── data/             # Data files (JSON storage)
+├── public/           # Public assets
 ├── types/            # TS type definitions
 └── utility/          # Shared utilities
 ```
