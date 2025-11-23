@@ -33,16 +33,16 @@ export const UserProfile = ({ user }: UserProfileProps) => {
         className="rounded-full object-cover shrink-0"
       />
       <div className="flex-1 gap-x-6 gap-y-2 grid grid-cols-[auto_1fr]">
-        <span className="font-medium text-gray-400">Full name:</span>
+        <span className="font-medium text-gray-600">Full name:</span>
         <span>{fullName}</span>
 
-        <span className="font-medium text-gray-400">Age:</span>
+        <span className="font-medium text-gray-600">Age:</span>
         <span>{age}</span>
 
-        <span className="font-medium text-gray-400">Country:</span>
+        <span className="font-medium text-gray-600">Country:</span>
         <span>{countryMap[country]}</span>
 
-        <span className="font-medium text-gray-400">Interests:</span>
+        <span className="font-medium text-gray-600">Interests:</span>
         <div className="flex flex-wrap gap-2">
           {interests.map((interest, index) => (
             <span
