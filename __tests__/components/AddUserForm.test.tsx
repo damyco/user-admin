@@ -113,7 +113,7 @@ describe('AddUserForm Component', () => {
 
     (global.fetch as jest.Mock).mockResolvedValueOnce({
       ok: true,
-      json: async () => ({ fullname: 'John Doe', id: '123' }),
+      json: async () => ({ fullName: 'John Doe', id: '123' }),
     });
 
     render(<AddUserForm />);
