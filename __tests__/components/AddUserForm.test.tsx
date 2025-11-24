@@ -90,6 +90,24 @@ describe('AddUserForm Component', () => {
     });
   });
 
+  it('shows validation error when no interests are selected', async () => {
+    const user = userEvent.setup();
+    render(<AddUserForm />);
+
+    await user.type(screen.getByLabelText(/Full name/i), 'John Doe');
+    await user.type(screen.getByLabelText(/Age/i), '25');
+    await user.selectOptions(screen.getByLabelText(/Country/i), 'US');
+
+    const submitButton = screen.getByRole('button', { name: /Add user/i });
+    await user.click(submitButton);
+
+    await waitFor(() => {
+      expect(
+        screen.getByText('Please select at least one interest.')
+      ).toBeInTheDocument();
+    });
+  });
+
   it('submits form successfully with valid data', async () => {
     const user = userEvent.setup();
 
@@ -104,15 +122,28 @@ describe('AddUserForm Component', () => {
     await user.type(screen.getByLabelText(/Age/i), '25');
     await user.selectOptions(screen.getByLabelText(/Country/i), 'US');
     await user.click(screen.getByLabelText(/Travel/i));
+    await user.click(screen.getByLabelText(/Music/i));
 
     await user.click(screen.getByRole('button', { name: /Add user/i }));
 
     await waitFor(() => {
-      expect(global.fetch).toHaveBeenCalledWith('/api/users', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: expect.any(String),
-      });
+      expect(global.fetch).toHaveBeenCalledWith(
+        '/api/users',
+        expect.objectContaining({
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+        })
+      );
+    });
+
+    const fetchCall = (global.fetch as jest.Mock).mock.calls[0];
+    const requestBody = JSON.parse(fetchCall[1].body);
+
+    expect(requestBody).toEqual({
+      fullName: 'John Doe',
+      age: '25',
+      country: 'US',
+      interests: ['travel', 'music'],
     });
 
     await waitFor(() => {
