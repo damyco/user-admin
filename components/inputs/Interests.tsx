@@ -63,7 +63,6 @@ export const Interests = ({ control, errors }: InterestsProps) => {
           <div className="gap-2 grid grid-cols-2 mt-1.5">
             {interestOptions.map((option) => (
               <Checkbox
-                readOnly
                 key={option.id}
                 id={option.id}
                 label={option.label}
