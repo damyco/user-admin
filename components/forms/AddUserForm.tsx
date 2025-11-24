@@ -3,6 +3,7 @@
 import { useForm } from 'react-hook-form';
 import { validationRules } from './validation-rules';
 import { FormValues } from '@/types/form-values';
+import { User } from '@/types/user';
 
 import { Input } from '../inputs/Input';
 import { SelectCountry } from '../inputs/SelectCountry';
@@ -42,7 +43,7 @@ const AddUserForm = () => {
         throw new Error('Failed to add user.');
       }
 
-      const newUser = await response.json();
+      const newUser: User = await response.json();
       alert(`User ${newUser.fullName} added successfully!`);
 
       reset();
