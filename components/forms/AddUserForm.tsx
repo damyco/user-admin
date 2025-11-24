@@ -43,11 +43,11 @@ const AddUserForm = () => {
       }
 
       const newUser = await response.json();
-      alert(`User ${newUser.fullname} added successfully!`);
+      alert(`User ${newUser.fullName} added successfully!`);
 
       reset();
     } catch (error) {
-      console.log('Error adding user:', error);
+      console.log(error);
     }
   };
 
