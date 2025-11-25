@@ -120,7 +120,7 @@ Simplifies form state management:
 - Optimized re-renders for better performance
 - TypeScript support for type-safe forms
 
-## Limitations & Future Improvements
+## Limitations
 
 - **Data Persistence**: Currently uses JSON file storage. For production, it should use a database
 - **Authentication**: No authentication layer implemented
